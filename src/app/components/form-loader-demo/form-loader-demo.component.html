@@ -1,0 +1,101 @@
+<div class="form-loader-demo">
+  <div class="demo-header">
+    <h1>Angular Form Loader Demo</h1>
+    <p>This demo shows how the AngularFormLoader service handles dynamic form loading and NG05104 error prevention.</p>
+  </div>
+
+  <div class="demo-controls">
+    <h2>Load Dynamic Forms</h2>
+    <div class="control-buttons">
+      <button 
+        class="btn btn-primary" 
+        (click)="loadContactForm()" 
+        [disabled]="isLoading"
+      >
+        Load Contact Form
+      </button>
+      
+      <button 
+        class="btn btn-primary" 
+        (click)="loadRegistrationForm()" 
+        [disabled]="isLoading"
+      >
+        Load Registration Form
+      </button>
+      
+      <button 
+        class="btn btn-warning" 
+        (click)="loadFormWithError()" 
+        [disabled]="isLoading"
+      >
+        Test Error Handling
+      </button>
+    </div>
+    
+    <div *ngIf="isLoading" class="loading-indicator">
+      Loading form...
+    </div>
+  </div>
+
+  <div class="demo-status">
+    <h2>Status</h2>
+    
+    <div class="status-section">
+      <h3>Loaded Forms ({{ loadedForms.length }})</h3>
+      <div *ngIf="loadedForms.length === 0" class="no-forms">
+        No forms currently loaded
+      </div>
+      <div *ngFor="let formId of loadedForms" class="loaded-form-item">
+        <span class="form-id">{{ formId }}</span>
+        <button class="btn btn-sm btn-danger" (click)="cleanupForm(formId)">
+          Remove
+        </button>
+      </div>
+      
+      <div *ngIf="loadedForms.length > 0" class="cleanup-all">
+        <button class="btn btn-danger" (click)="cleanupAllForms()">
+          Cleanup All Forms
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="errors.length > 0" class="status-section">
+      <h3>Errors ({{ errors.length }}) 
+        <button class="btn btn-sm btn-secondary" (click)="clearErrors()">Clear</button>
+      </h3>
+      <div *ngFor="let error of errors" class="error-item">
+        <div class="error-code">{{ error.code }}</div>
+        <div class="error-message">{{ error.message }}</div>
+        <div class="error-container">Container: {{ error.containerId }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-info">
+    <h2>About NG05104 Error Handling</h2>
+    <div class="info-content">
+      <p>
+        The AngularFormLoader service prevents NG05104 errors by:
+      </p>
+      <ul>
+        <li>Using dynamic component loading instead of multiple Angular bootstrap instances</li>
+        <li>Ensuring proper timing between container creation and component loading</li>
+        <li>Implementing proper cleanup to avoid DOM conflicts</li>
+        <li>Providing error handling and recovery mechanisms</li>
+      </ul>
+      
+      <p>
+        <strong>NG05104</strong> occurs when Angular cannot find the root element during bootstrap. 
+        This implementation avoids that by using ComponentFactoryResolver and proper DOM management.
+      </p>
+    </div>
+  </div>
+
+  <!-- Dynamic forms will be loaded here -->
+  <div class="dynamic-forms-container">
+    <h2>Loaded Forms</h2>
+    <div class="forms-grid">
+      <!-- Forms are dynamically added here by the AngularFormLoaderService -->
+    </div>
+  </div>
+</div>

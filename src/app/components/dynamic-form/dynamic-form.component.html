@@ -1,0 +1,80 @@
+<div class="dynamic-form-container">
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="dynamic-form">
+    
+    <h2 *ngIf="config.title" class="form-title">{{ config.title }}</h2>
+    
+    <div *ngFor="let field of config.fields" class="form-field">
+      <label [for]="field.name" class="field-label">
+        {{ field.label }}
+        <span *ngIf="field.required" class="required-indicator">*</span>
+      </label>
+      
+      <!-- Text Input -->
+      <input 
+        *ngIf="field.type === 'text'"
+        type="text"
+        [id]="field.name"
+        [formControlName]="field.name"
+        class="form-control"
+        [class.error]="getFieldError(field.name)"
+      />
+      
+      <!-- Email Input -->
+      <input 
+        *ngIf="field.type === 'email'"
+        type="email"
+        [id]="field.name"
+        [formControlName]="field.name"
+        class="form-control"
+        [class.error]="getFieldError(field.name)"
+      />
+      
+      <!-- Number Input -->
+      <input 
+        *ngIf="field.type === 'number'"
+        type="number"
+        [id]="field.name"
+        [formControlName]="field.name"
+        class="form-control"
+        [class.error]="getFieldError(field.name)"
+      />
+      
+      <!-- Textarea -->
+      <textarea 
+        *ngIf="field.type === 'textarea'"
+        [id]="field.name"
+        [formControlName]="field.name"
+        class="form-control textarea"
+        [class.error]="getFieldError(field.name)"
+        rows="4"
+      ></textarea>
+      
+      <!-- Select Dropdown -->
+      <select 
+        *ngIf="field.type === 'select'"
+        [id]="field.name"
+        [formControlName]="field.name"
+        class="form-control"
+        [class.error]="getFieldError(field.name)"
+      >
+        <option value="">Select {{ field.label }}</option>
+        <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+      </select>
+      
+      <!-- Error Message -->
+      <div *ngIf="getFieldError(field.name)" class="error-message">
+        {{ getFieldError(field.name) }}
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="!dynamicForm.valid">
+        {{ config.submitText || 'Submit' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="reset()">
+        Reset
+      </button>
+    </div>
+    
+  </form>
+</div>

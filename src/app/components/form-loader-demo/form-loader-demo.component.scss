@@ -1,0 +1,248 @@
+.form-loader-demo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.demo-header h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.demo-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.demo-controls {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.demo-controls h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.loading-indicator {
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.demo-status {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.demo-status h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.status-section {
+  margin-bottom: 20px;
+}
+
+.status-section h3 {
+  margin-bottom: 10px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.no-forms {
+  color: #999;
+  font-style: italic;
+}
+
+.loaded-form-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.form-id {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.cleanup-all {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.error-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+.error-code {
+  font-weight: bold;
+  font-size: 12px;
+  color: #dc3545;
+}
+
+.error-message {
+  margin: 5px 0;
+}
+
+.error-container {
+  font-size: 12px;
+  color: #666;
+}
+
+.demo-info {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.demo-info h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.info-content p {
+  margin-bottom: 10px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.info-content ul {
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.info-content li {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.dynamic-forms-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.dynamic-forms-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+/* Style for dynamically loaded form containers */
+:host ::ng-deep .angular-form-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9ff;
+}
+
+:host ::ng-deep .angular-form-container::before {
+  content: "Dynamically Loaded Form";
+  display: block;
+  font-size: 12px;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
