@@ -1,0 +1,152 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h2>Dashboard</h2>
+    <div class="header-actions">
+      <p-button 
+        label="Test Navigation" 
+        icon="pi pi-external-link"
+        (onClick)="navigateAway()" 
+        [outlined]="true"
+        size="small">
+      </p-button>
+    </div>
+  </div>
+  
+  <div class="dashboard-content">
+    <!-- Tab View with enhanced error handling and loading states -->
+    <p-tabView 
+      [(activeIndex)]="activeIndex" 
+      (onChange)="onTabChange($event)"
+      [scrollable]="true">
+      
+      <p-tabPanel 
+        *ngFor="let tab of tabs; let i = index" 
+        [header]="tab.label"
+        [disabled]="!!tab.loading">
+        
+        <!-- Loading indicator for better UX - addresses issue #5 -->
+        <div *ngIf="tab.loading" class="tab-loading">
+          <p-progressSpinner 
+            [style]="{'width': '50px', 'height': '50px'}" 
+            strokeWidth="4">
+          </p-progressSpinner>
+          <p>Loading {{ tab.label }}...</p>
+        </div>
+        
+        <!-- Error state with retry option - addresses issue #2 -->
+        <div *ngIf="tab.error && !tab.loading" class="tab-error">
+          <div class="error-icon">
+            <i class="pi pi-exclamation-triangle"></i>
+          </div>
+          <h3>Unable to Load Content</h3>
+          <p>{{ tab.error }}</p>
+          <p-button 
+            label="Retry" 
+            icon="pi pi-refresh"
+            (onClick)="retryLoadContent()"
+            severity="secondary">
+          </p-button>
+        </div>
+        
+        <!-- Content panel - handles null gracefully -->
+        <div 
+          #contentPanel 
+          class="tab-content" 
+          *ngIf="!tab.loading && !tab.error">
+          
+          <div [ngSwitch]="tab.component">
+            
+            <!-- Forms Tab Content -->
+            <div *ngSwitchCase="'forms'" class="content-section">
+              <h3>Form Management</h3>
+              <p>Manage your dynamic forms here.</p>
+              <div class="content-grid">
+                <div class="card">
+                  <h4>Recent Forms</h4>
+                  <p>No forms created yet.</p>
+                </div>
+                <div class="card">
+                  <h4>Form Templates</h4>
+                  <p>Browse available templates.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Analytics Tab Content -->
+            <div *ngSwitchCase="'analytics'" class="content-section">
+              <h3>Analytics Dashboard</h3>
+              <p>View form submission statistics and analytics.</p>
+              <div class="content-grid">
+                <div class="card">
+                  <h4>Submissions Today</h4>
+                  <div class="metric">42</div>
+                </div>
+                <div class="card">
+                  <h4>Active Forms</h4>
+                  <div class="metric">8</div>
+                </div>
+                <div class="card">
+                  <h4>Response Rate</h4>
+                  <div class="metric">85%</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Settings Tab Content -->
+            <div *ngSwitchCase="'settings'" class="content-section">
+              <h3>Application Settings</h3>
+              <p>Configure your application preferences.</p>
+              <div class="settings-form">
+                <div class="setting-item">
+                  <label>Auto-save forms</label>
+                  <input type="checkbox" checked>
+                </div>
+                <div class="setting-item">
+                  <label>Email notifications</label>
+                  <input type="checkbox">
+                </div>
+                <div class="setting-item">
+                  <label>Theme preference</label>
+                  <select>
+                    <option>Light</option>
+                    <option>Dark</option>
+                    <option>Auto</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Reports Tab Content -->
+            <div *ngSwitchCase="'reports'" class="content-section">
+              <h3>Reports & Export</h3>
+              <p>Generate and download reports.</p>
+              <div class="content-grid">
+                <div class="card">
+                  <h4>Weekly Report</h4>
+                  <p-button label="Generate" size="small"></p-button>
+                </div>
+                <div class="card">
+                  <h4>Monthly Summary</h4>
+                  <p-button label="Generate" size="small"></p-button>
+                </div>
+                <div class="card">
+                  <h4>Custom Report</h4>
+                  <p-button label="Configure" size="small"></p-button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+  
+  <!-- Debug info for testing -->
+  <div class="debug-info" *ngIf="false">
+    <h4>Debug Info:</h4>
+    <p>Active Index: {{ activeIndex }}</p>
+    <p>Content Panel: {{ contentPanel ? 'Available' : 'Null' }}</p>
+  </div>
+</div>
