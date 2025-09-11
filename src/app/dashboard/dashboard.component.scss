@@ -1,0 +1,250 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  
+  h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.dashboard-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+// Tab content styles
+.tab-content {
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.content-section {
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  h4 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  p {
+    margin: 0;
+    color: #6c757d;
+  }
+  
+  .metric {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1976d2;
+    margin-top: 0.5rem;
+  }
+}
+
+// Loading state styles
+.tab-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  
+  p {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 1.1rem;
+  }
+}
+
+// Error state styles
+.tab-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  
+  .error-icon {
+    font-size: 3rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+    
+    i {
+      font-size: inherit;
+    }
+  }
+  
+  h3 {
+    margin: 0 0 1rem 0;
+    color: #dc3545;
+    font-size: 1.3rem;
+  }
+  
+  p {
+    margin: 0 0 2rem 0;
+    color: #666;
+    max-width: 400px;
+  }
+}
+
+// Settings form styles
+.settings-form {
+  max-width: 500px;
+  
+  .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    label {
+      font-weight: 500;
+      color: #333;
+    }
+    
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+    
+    select {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: white;
+    }
+  }
+}
+
+// Debug info styles
+.debug-info {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  
+  h4 {
+    margin: 0 0 0.5rem 0;
+    color: #495057;
+  }
+  
+  p {
+    margin: 0.25rem 0;
+    color: #6c757d;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-content {
+    padding: 1rem;
+  }
+}
+
+// PrimeNG overrides for better styling
+::ng-deep {
+  .p-tabview {
+    .p-tabview-nav {
+      background: #f8f9fa;
+      border-bottom: 2px solid #e9ecef;
+    }
+    
+    .p-tabview-nav-link {
+      padding: 1rem 1.5rem;
+      font-weight: 500;
+      color: #495057;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: #e9ecef;
+        color: #1976d2;
+      }
+    }
+    
+    .p-highlight .p-tabview-nav-link {
+      background: white;
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+    }
+    
+    .p-tabview-panels {
+      background: white;
+      padding: 0;
+    }
+  }
+  
+  .p-progressspinner {
+    .p-progressspinner-circle {
+      stroke: #1976d2;
+    }
+  }
+}
