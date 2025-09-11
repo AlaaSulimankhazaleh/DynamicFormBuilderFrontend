@@ -121,7 +121,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
   
-  private finalizeTabSwitch(index: number): void {
+  finalizeTabSwitch(index: number): void {
     this.activeIndex = index;
     this.setTabLoading(index, false);
     this.saveTabState(); // Addresses issue #3 & #6 - maintain tab state
@@ -149,7 +149,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
   
-  private setTabLoading(index: number, loading: boolean): void {
+  setTabLoading(index: number, loading: boolean): void {
     if (this.tabs[index]) {
       this.tabs[index].loading = loading;
       if (loading) {
